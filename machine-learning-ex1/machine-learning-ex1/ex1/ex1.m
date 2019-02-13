@@ -39,7 +39,7 @@ pause;
 %% ======================= Part 2: Plotting =======================
 fprintf('Plotting Data ...\n')
 data = load('ex1data1.txt');
-X = data(:, 1); y = data(:, 2);
+X = data(:, 1); y = data(:, 2); % X is the first column and y the second
 m = length(y); % number of training examples
 
 % Plot Data
@@ -52,7 +52,7 @@ pause;
 %% =================== Part 3: Cost and Gradient descent ===================
 
 X = [ones(m, 1), data(:,1)]; % Add a column of ones to x
-theta = zeros(2, 1); % initialize fitting parameters
+theta = zeros(2, 1); % initialize fitting parameters with zeros
 
 % Some gradient descent settings
 iterations = 1500;
@@ -107,6 +107,9 @@ fprintf('Visualizing J(theta_0, theta_1) ...\n')
 % Grid over which we will calculate J
 theta0_vals = linspace(-10, 10, 100);
 theta1_vals = linspace(-1, 4, 100);
+%  linspace: Return a row vector with N linearly spaced elements between START
+%  and END.
+% Looks like grid for visualization.
 
 % initialize J_vals to a matrix of 0's
 J_vals = zeros(length(theta0_vals), length(theta1_vals));
