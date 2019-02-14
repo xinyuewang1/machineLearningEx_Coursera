@@ -15,7 +15,9 @@ J = 0;
 
 ##J = sum((X * theta - y) .^ 2 )/ (2 * m)
 
-J = (X * theta - y)' * (X * theta - y) / (2*m)
+% ?? What magic I was doing here?? I see, it's written on pdf.
+%  J = (X * theta - y)' * (X * theta - y) / (2*m);
+J = sum( ( X * theta - y) .^ 2 ) / ( 2 * m);
 
 
 
