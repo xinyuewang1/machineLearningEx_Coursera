@@ -82,19 +82,31 @@ X = [ones(m, 1) X];
 fprintf('Running gradient descent ...\n');
 
 % Choose some alpha value
-alpha = 0.01;
-num_iters = 400;
+alpha = 0.001;
+% num_iters = 400;
+num_iters = 50;
+figure;
+cmap = hsv(20);
+a = [alpha];
 
 while alpha <= 0.3
+
     theta = zeros(3, 1);
   [theta, J_history] = gradientDescentMulti(X, y, theta, alpha, num_iters);
 
   % Plot the convergence graph
-  figure;
-  plot(1:numel(J_history), J_history, '-b', 'LineWidth', 2);
+  
   hold on;
+  plot(1:numel(J_history), J_history, '-', 'LineWidth', 2, 'color', rand(1, 3));
+  % random a color to draw a line.
+  
+  alpha *= 3;
+  a = [a; alpha];  
 endwhile
 
+legend(strcat('alpha=',num2str(a)));
+
+% As can be seen from 50iter, 0.081 is the best alpha.
 
 % Init Theta and Run Gradient Descent 
 %theta = zeros(3, 1);
