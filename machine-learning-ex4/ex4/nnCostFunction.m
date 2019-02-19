@@ -40,13 +40,17 @@ Theta2_grad = zeros(size(Theta2));
 %         computed in ex4.m
 %
 for i = 1:m
-  a1 = [1 X(i,:)]' % 401*1
-  z2 = Theta1 * a1 % 25 * 1
-  a2 = [1; sigmoid(z2)] % 26 * 1
-  z3 = Theta2 * a2 % 10 * 1
-  a3 = sigmoid(z3) 
-  J += - (y(i) == 1:10) * log(a3) 
+  a1 = [1 X(i,:)]'; % 401*1
+  z2 = Theta1 * a1; % 25 * 1
+  a2 = [1; sigmoid(z2)]; % 26 * 1
+  z3 = Theta2 * a2; % 10 * 1
+  a3 = sigmoid(z3); 
+  yk = (y(i) == 1:10)'; % 10 * 1
+  J += sum(-yk .* log(a3) - (1 - yk) .* log(1 - a3));
 endfor
+
+% size(yk)
+J /= m;
 
 % Part 2: Implement the backpropagation algorithm to compute the gradients
 %         Theta1_grad and Theta2_grad. You should return the partial derivatives of
