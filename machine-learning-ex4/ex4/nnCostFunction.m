@@ -52,6 +52,9 @@ endfor
 % size(yk)
 J /= m;
 
+% Regularization
+J += lambda / (2*m) *(sum(sum((Theta1(:,2:end).^2))) + sum(sum(Theta2(:,2:end) .^2)));
+
 % Part 2: Implement the backpropagation algorithm to compute the gradients
 %         Theta1_grad and Theta2_grad. You should return the partial derivatives of
 %         the cost function with respect to Theta1 and Theta2 in Theta1_grad and
