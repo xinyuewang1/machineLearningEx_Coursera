@@ -164,7 +164,9 @@ pause;
 %  lambda to see how the fit and learning curve change.
 %
 
-lambda = 0;
+%lambda = 0;
+lambda = 1;
+%lambda = 100;
 [theta] = trainLinearReg(X_poly, y, lambda);
 
 % Plot training data and fit
@@ -218,3 +220,33 @@ end
 
 fprintf('Program paused. Press enter to continue.\n');
 pause;
+
+%optimized lambda seems like is 3;
+lambda = 3;
+[theta] = trainLinearReg([ones(m, 1) X], y, lambda);
+[Jtest, grad] = linearRegCostFunction([ones(size(Xtest,1),1) Xtest], ytest, theta, 0);
+fprintf('Test error: %f\n', Jtest);
+
+%Plotting learning curves with randomly selected examples
+%lambda = 0.01;
+%error_train = zeros(m, 1);
+%error_val   = zeros(m, 1);
+
+%for i = 1:50
+%  [t, v] = ...
+%    learningCurve([ones(m, 1) X], y, ...
+%                  [ones(size(Xval, 1), 1) Xval], yval, ...
+%                  lambda);  
+%  error_train += t;
+%  error_val += v;
+%endfor
+
+%error_train /= 50;
+%error_val /= 50;
+                  
+%plot(1:m, error_train, 1:m, error_val);
+%title('Learning curve for linear regression')
+%legend('Train', 'Cross Validation')
+%xlabel('Number of training examples')
+%ylabel('Error')
+%axis([0 13 0 150])
