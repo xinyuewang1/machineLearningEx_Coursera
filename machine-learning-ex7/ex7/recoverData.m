@@ -20,7 +20,10 @@ X_rec = zeros(size(Z, 1), size(U, 1));
 %
 %               Notice that U(j, 1:K) is a row vector.
 %               
-
+% X_approx = U_reduce * Z 
+%  m*n       n*k        m*k
+U_reduce = U(:, 1:K); % n*K
+X_rec = Z * U_reduce';
 
 
 % =============================================================

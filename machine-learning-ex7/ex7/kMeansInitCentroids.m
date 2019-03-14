@@ -12,8 +12,10 @@ centroids = zeros(K, size(X, 2));
 % Instructions: You should set centroids to randomly chosen examples from
 %               the dataset X
 %
+%Logic: reorder X, and pick first K
 
-
+randidx = randperm(size(X, 1)); %randperm stands for randomly permute
+centroids = X(randidx(1:K), :);
 
 
 
