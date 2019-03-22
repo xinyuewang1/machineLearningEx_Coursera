@@ -21,10 +21,10 @@ sigma2 = zeros(n, 1);
 %               should contain variance of the i-th feature.
 %
 
-
-
-
-
+mu = sum(X)' / m;  
+%sigma2 = sum((X - mu') .^ 2)' / m; 
+% var: calculates the variance.
+sigma2 = var(X, opt = 1);
 
 
 
