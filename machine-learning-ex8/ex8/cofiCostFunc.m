@@ -5,6 +5,9 @@ function [J, grad] = cofiCostFunc(params, Y, R, num_users, num_movies, ...
 %   num_features, lambda) returns the cost and gradient for the
 %   collaborative filtering problem.
 %
+% Y: (a num movies x num users matrix) stores the ratings y(i;j)(from 1 to 5)
+% R: an binary-valued indicator matrix, where R(i; j) = 1 if user j gave a 
+%    rating to movie i, and R(i; j) = 0 otherwise.
 
 % Unfold the U and W matrices from params
 X = reshape(params(1:num_movies*num_features), num_movies, num_features);
@@ -39,7 +42,10 @@ Theta_grad = zeros(size(Theta));
 %        Theta_grad - num_users x num_features matrix, containing the 
 %                     partial derivatives w.r.t. to each element of Theta
 %
-
+% My magic way...
+J = 0.5 * sum(((X * Theta' - Y) .^2)(R==1));
+% Way recommended by course...
+%J = 0.5 * sum(sum(R .* ((X * Theta' - Y) .^2)));
 
 
 
