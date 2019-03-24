@@ -47,8 +47,18 @@ J = 0.5 * sum(((X * Theta' - Y) .^2)(R==1));
 % Way recommended by course...
 %J = 0.5 * sum(sum(R .* ((X * Theta' - Y) .^2)));
 
+for k = 1:num_movies
+  idx = find(R(k, :)==1);  % who commented this movie
+  Theta_temp = Theta(idx, :);  % params for commented movies
+  X_grad(k,:) = (X(k,:) * Theta_temp' - Y(k, idx)) * Theta_temp; 
+endfor
 
-
+for k = 1:num_users
+  idx = find(R(:, k)==1);  % this user commented which movies
+  X_temp = X(:, idx);
+  Theta_grad(k, :) = 
+endfor
+  
 
 
 
